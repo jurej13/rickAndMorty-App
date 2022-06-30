@@ -8,8 +8,6 @@ import { Characters, Info, Result } from 'src/app/interface/characters.interface
   providedIn: 'root'
 })
 export class DataManagerService {
-  private infoPagination$ : BehaviorSubject<Info> = new BehaviorSubject<Info>({})
-  private characters$ : BehaviorSubject<Result[]> = new BehaviorSubject<Result[]>([])
   private charactersInfoResults$ : BehaviorSubject<Characters> = new BehaviorSubject<Characters>({})
   
   constructor(private apollo : Apollo) { }
