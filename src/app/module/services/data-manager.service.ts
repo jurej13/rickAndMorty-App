@@ -21,7 +21,7 @@ export class DataManagerService {
     this.charactersInfoResults$.next(data)
   }
 
-  getCharacters(termino :string = "",page : number = 1) {
+  getCharacters(termino : string = "",page : number = 1) {
     const query = gql`
        {
         characters(page: ${page},filter:{name:"${termino}"}) {
@@ -42,7 +42,6 @@ export class DataManagerService {
     }).valueChanges
     .pipe(
       map(resp=> {
-        
         return resp.data.characters})
     )
     
