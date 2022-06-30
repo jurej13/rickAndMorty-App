@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { delay } from 'rxjs';
+import { DataManagerService } from '../../services/data-manager.service';
 
 @Component({
   selector: 'app-search',
@@ -7,12 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SearchComponent implements OnInit {
 
-  constructor() { }
+  constructor(private dataManagerService : DataManagerService) { }
 
   ngOnInit(): void {
   }
   searchByName(termino : any){
-    console.log(termino.value)
+    
+    this.dataManagerService.getCharacters(termino.value)
+      .subscribe(
+        resp=>this.dataManagerService.charactersData = resp
+      )
   }
 
 }

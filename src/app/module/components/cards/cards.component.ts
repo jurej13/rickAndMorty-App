@@ -14,7 +14,6 @@ export class CardsComponent implements OnInit {
   }
   ngOnInit(): void {    
     this.characters = this.dataManagerService.characters
-    console.log(this.dataManagerService.characters)
   }
 
 }

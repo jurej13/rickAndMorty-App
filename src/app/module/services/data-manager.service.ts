@@ -21,10 +21,10 @@ export class DataManagerService {
     this.charactersInfoResults$.next(data)
   }
 
-  getCharacters(page : number = 1) {
+  getCharacters(termino :string = "",page : number = 1) {
     const query = gql`
        {
-        characters(page: ${page}) {
+        characters(page: ${page},filter:{name:"${termino}"}) {
           info {
             count,
             pages,
