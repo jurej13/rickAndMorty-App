@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Characters, Result } from 'src/app/interface/characters.interface';
+import { DataManagerService } from '../../services/data-manager.service';
 
 @Component({
   selector: 'app-cards',
@@ -6,10 +9,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./cards.component.css']
 })
 export class CardsComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
+  characters !: Observable<Characters>
+  constructor(private dataManagerService : DataManagerService) { 
+  }
+  ngOnInit(): void {    
+    this.characters = this.dataManagerService.characters
+    console.log(this.dataManagerService.characters)
   }
 
 }

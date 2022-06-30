@@ -1,16 +1,30 @@
 import { Injectable } from '@angular/core';
+import { map } from 'rxjs';
 import { Apollo, gql } from 'apollo-angular';
+import { BehaviorSubject } from 'rxjs';
+import { Characters, Info, Result } from 'src/app/interface/characters.interface';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataManagerService {
+  private infoPagination$ : BehaviorSubject<Info> = new BehaviorSubject<Info>({})
+  private characters$ : BehaviorSubject<Result[]> = new BehaviorSubject<Result[]>([])
+  private charactersInfoResults$ : BehaviorSubject<Characters> = new BehaviorSubject<Characters>({})
   
   constructor(private apollo : Apollo) { }
-  getCharacters(){
+
+  get characters(){
+    return this.charactersInfoResults$.asObservable() 
+  }
+  set charactersData(data : Characters){
+    this.charactersInfoResults$.next(data)
+  }
+
+  getCharacters(page : number = 1) {
     const query = gql`
-      query {
-        characters(page: 2) {
+       {
+        characters(page: ${page}) {
           info {
             count,
             pages,
@@ -22,9 +36,15 @@ export class DataManagerService {
             image
           }
         }
-      }
-    `
-    // TODO: hacer peticion para los characters de rck and morty y despues hacer las cards para cada uno.
-
+      }`
+    return this.apollo.watchQuery<any>({
+      query : query
+    }).valueChanges
+    .pipe(
+      map(resp=> {
+        
+        return resp.data.characters})
+    )
+    
   }
 }

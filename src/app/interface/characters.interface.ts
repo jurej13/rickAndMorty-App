@@ -1,5 +1,5 @@
 export interface DataResponse {
-    data: Data;
+    data : Data;
 }
 
 export interface Data {
@@ -7,15 +7,15 @@ export interface Data {
 }
 
 export interface Characters {
-    info:    Info;
-    results: Result[];
+    info?:    Info;
+    results ?: Result[];
 }
 
 export interface Info {
-    count: number;
-    pages: number;
-    next:  number;
-    prev:  number;
+    count?: number;
+    pages?: number;
+    next?:  number;
+    prev?:  number;
 }
 
 export interface Result {

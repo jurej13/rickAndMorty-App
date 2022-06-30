@@ -9,17 +9,20 @@ import { CardsComponent } from './components/cards/cards.component';
 import { PrimengModule } from '../primeng/primeng.module';
 
 
+
 @NgModule({
   declarations: [
     MainComponent,
     DetailComponent,
     SearchComponent,
-    CardsComponent
+    CardsComponent,
   ],
   imports: [
     CommonModule,
     ModuleRoutingModule,
     PrimengModule
-  ]
+  ],
+  
+  
 })
 export class ModuleModule { }

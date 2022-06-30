@@ -1,1 +1,14 @@
-<p>cards works!</p>
+
+<div *ngFor="let character of (characters|async)?.results">
+    <div class="m-2">
+        <p-card [header]="character.name" class="col-3" styleClass="p-card-shadow">
+            <ng-template pTemplate="header">
+                <img alt="Card" [src]="character.image">
+            </ng-template>
+            <ng-template pTemplate="footer">
+                <p-button label="Save" icon="pi pi-check"></p-button>
+            </ng-template>
+        </p-card>
+    </div>
+</div>
+
